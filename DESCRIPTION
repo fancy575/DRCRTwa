@@ -4,6 +4,7 @@ Title: Doubly Robust While-Alive Estimation for Randomized Trials
 Version: 0.1.0
 Authors@R: c(
     person("Xi", "Fang", email = "xfang@mcw.edu", role = c("aut", "cre")),
+    person("Da", "Zhao", email = "dzhao@yale.edu", role = "aut"),
     person("Fan", "Li", email = "fan.f.li@yale.edu", role = "aut")
   )
 Description: Estimates exposure-weighted while-alive recurrent-event rates in
@@ -23,13 +24,16 @@ Depends: R (>= 4.1.0)
 Imports:
     ggplot2 (>= 3.4.0),
     Rcpp (>= 1.0.10),
+    rlang (>= 1.0.0),
     stats,
-    survival,
     utils
 LinkingTo: Rcpp
 Suggests:
+    survival,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: yes
-SystemRequirements: C++11
+URL: https://github.com/fancy575/DRCRTwa
+BugReports: https://github.com/fancy575/DRCRTwa/issues
+Roxygen: list(markdown = TRUE)
 Config/roxygen2/version: 8.0.0

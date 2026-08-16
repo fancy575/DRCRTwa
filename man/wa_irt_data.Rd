@@ -7,8 +7,8 @@
 wa_irt_data()
 }
 \value{
-A data frame with columns `id`, `treatment`, `time`, `status`, `z1`,
-  `z2`, and `z3`.
+A data frame with columns \code{id}, \code{treatment}, \code{time}, \code{status}, \code{z1},
+\code{z2}, and \code{z3}.
 }
 \description{
 Returns a reproducible example with one row per recurrent event and one final

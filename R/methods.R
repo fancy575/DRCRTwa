@@ -91,6 +91,33 @@ wa_trajectory <- function(object, times = NULL,
   out
 }
 
+#' Print, summarize, and plot a DRCRTwa fit
+#'
+#' Methods for compact printing, time-specific summaries, and trajectory plots
+#' from a fitted `DRCRTwa` object.
+#'
+#' @param x,object A fitted `DRCRTwa` object or, for
+#'   `print.summary.DRCRTwa()`, an object returned by `summary()`.
+#' @param digits Number of digits used when printing.
+#' @param times Optional times to summarize or plot. The summary default is the
+#'   largest fitted time; the plot default uses the full fitted trajectory.
+#' @param estimand Optional estimand names.
+#' @param method One or more methods for `summary()`, or one method for
+#'   `plot()`: `"dr"`, `"ipcw"`, or `"or"`.
+#' @param type `"arms"` for treatment-specific trajectories or `"contrast"`
+#'   for treatment-minus-control trajectories.
+#' @param conf.int Logical; include pointwise confidence ribbons.
+#' @param ... For plotting, additional arguments passed to [ggplot2::theme()];
+#'   otherwise unused.
+#'
+#' @return `print()` returns its input invisibly. `summary()` returns an object
+#'   of class `summary.DRCRTwa`. `plot()` and `autoplot()` return a `ggplot`
+#'   object.
+#'
+#' @name DRCRTwa-methods
+NULL
+
+#' @rdname DRCRTwa-methods
 #' @export
 print.DRCRTwa <- function(x, digits = 3L, ...) {
   cat("Doubly robust while-alive fit (DRCRTwa)\n")
@@ -125,15 +152,7 @@ print.DRCRTwa <- function(x, digits = 3L, ...) {
   invisible(x)
 }
 
-#' Summarize a DRCRTwa fit
-#'
-#' @param object A fitted `DRCRTwa` object.
-#' @param times Times to report. The default is the largest fitted time.
-#' @param estimand Optional estimand names.
-#' @param method One or more estimation methods: `"dr"`, `"ipcw"`, or `"or"`.
-#' @param ... Unused.
-#'
-#' @return An object of class `summary.DRCRTwa`.
+#' @rdname DRCRTwa-methods
 #' @export
 summary.DRCRTwa <- function(object, times = NULL, estimand = NULL,
                             method = "dr", ...) {
@@ -170,6 +189,7 @@ summary.DRCRTwa <- function(object, times = NULL, estimand = NULL,
   out
 }
 
+#' @rdname DRCRTwa-methods
 #' @export
 print.summary.DRCRTwa <- function(x, digits = 3L, ...) {
   a <- x$analysis
@@ -226,17 +246,7 @@ print.summary.DRCRTwa <- function(x, digits = 3L, ...) {
   invisible(x)
 }
 
-#' Plot while-alive trajectories
-#'
-#' @param x A fitted `DRCRTwa` object.
-#' @param type `"arms"` (default) or `"contrast"`.
-#' @param times Optional times to plot.
-#' @param estimand Optional estimand names.
-#' @param method Estimation method; defaults to `"dr"`.
-#' @param conf.int Logical; draw pointwise confidence ribbons.
-#' @param ... Additional arguments passed to [ggplot2::theme()].
-#'
-#' @return A `ggplot` object.
+#' @rdname DRCRTwa-methods
 #' @export
 plot.DRCRTwa <- function(x, type = c("arms", "contrast"), times = NULL,
                          estimand = NULL, method = "dr",
@@ -251,13 +261,14 @@ plot.DRCRTwa <- function(x, type = c("arms", "contrast"), times = NULL,
     p <- ggplot2::ggplot(
       dat,
       ggplot2::aes(
-        x = time, y = estimate, color = arm_label,
-        fill = arm_label, linetype = arm_label, group = arm_label
+        x = .data$time, y = .data$estimate, color = .data$arm_label,
+        fill = .data$arm_label, linetype = .data$arm_label,
+        group = .data$arm_label
       )
     )
     if (isTRUE(conf.int)) {
       p <- p + ggplot2::geom_ribbon(
-        ggplot2::aes(ymin = lower, ymax = upper),
+        ggplot2::aes(ymin = .data$lower, ymax = .data$upper),
         alpha = 0.16, color = NA
       )
     }
@@ -271,12 +282,13 @@ plot.DRCRTwa <- function(x, type = c("arms", "contrast"), times = NULL,
   } else {
     p <- ggplot2::ggplot(
       dat,
-      ggplot2::aes(x = time, y = estimate, group = estimand)
+      ggplot2::aes(x = .data$time, y = .data$estimate,
+                   group = .data$estimand)
     ) +
       ggplot2::geom_hline(yintercept = 0, linetype = "dotted", linewidth = 0.5)
     if (isTRUE(conf.int)) {
       p <- p + ggplot2::geom_ribbon(
-        ggplot2::aes(ymin = lower, ymax = upper),
+        ggplot2::aes(ymin = .data$lower, ymax = .data$upper),
         alpha = 0.16
       )
     }
@@ -288,11 +300,13 @@ plot.DRCRTwa <- function(x, type = c("arms", "contrast"), times = NULL,
       )
   }
   if (length(unique(dat$estimand)) > 1L) {
-    p <- p + ggplot2::facet_wrap(~estimand, scales = "free_y")
+    p <- p + ggplot2::facet_wrap(ggplot2::vars(.data$estimand),
+                              scales = "free_y")
   }
   p + ggplot2::theme_classic() + ggplot2::theme(...)
 }
 
+#' @rdname DRCRTwa-methods
 #' @export
 autoplot.DRCRTwa <- function(object, ...) {
   plot.DRCRTwa(object, ...)

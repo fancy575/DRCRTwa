@@ -24,7 +24,7 @@ DRCRT_WA(
 }
 \arguments{
 \item{formula}{A two-sided formula such as
-`survival::Surv(time, status) ~ z1 + z3`. Its right side specifies the
+\code{survival::Surv(time, status) ~ z1 + z3}. Its right side specifies the
 recurrent-event working model and, by default, the terminal-event working
 model.}
 
@@ -35,27 +35,27 @@ model.}
 \item{treatment}{Unquoted binary treatment column or its name.}
 
 \item{cluster}{For a CRT, the unquoted cluster-ID column or its name. Leave
-`NULL` for an IRT.}
+\code{NULL} for an IRT.}
 
 \item{censoring_formula}{Formula specifying the censoring working model, for
-example `survival::Surv(time, status) ~ z1 + z2`. Only its right side is
-used; the event coding is taken from `formula`.}
+example \code{survival::Surv(time, status) ~ z1 + z2}. Only its right side is
+used; the event coding is taken from \code{formula}.}
 
 \item{terminal_formula}{Formula specifying the terminal-event working model.
-It defaults to `formula`.}
+It defaults to \code{formula}.}
 
 \item{terminal_event}{Positive integer status code for the terminal event.
 By default, the largest observed positive status code is used.}
 
 \item{event_weights}{Numeric weights for recurrent-event types. A named vector
-such as `c(`1` = 1, `2` = 2)` is recommended. Names must exactly match the
+such as \verb{c(}1\verb{= 1,}2\verb{ = 2)} is recommended. Names must exactly match the
 recurrent-event codes. Unnamed weights are matched to sorted codes.}
 
 \item{times}{Positive analysis times. The default evaluates every observed
 positive event time and the largest follow-up time.}
 
-\item{estimand}{For a CRT, `"individual-average"`,
-`"cluster-average"`, or `"both"`; the default is both. An IRT has only
+\item{estimand}{For a CRT, \code{"individual-average"},
+\code{"cluster-average"}, or \code{"both"}; the default is both. An IRT has only
 the individual-average estimand.}
 
 \item{treatment_levels}{Optional two-element vector ordered as control then
@@ -68,12 +68,12 @@ fraction is used.}
 
 \item{conf.level}{Confidence level for pointwise Wald intervals.}
 
-\item{control}{A list returned by [DRCRTwa_control()].}
+\item{control}{A list returned by \code{\link[=DRCRTwa_control]{DRCRTwa_control()}}.}
 }
 \value{
-An object of class `DRCRTwa` containing treatment contrasts, arm
-  trajectories, pointwise confidence intervals, diagnostics, nuisance fits,
-  and optionally independent-unit influence values.
+An object of class \code{DRCRTwa} containing treatment contrasts, arm
+trajectories, pointwise confidence intervals, diagnostics, nuisance fits,
+and optionally independent-unit influence values.
 }
 \description{
 Fits the exposure-weighted while-alive estimator for an individually
@@ -88,7 +88,7 @@ independent-unit influence-function inference.
 The input data must be in long event-history form. Each participant has one
 row for every recurrent event and exactly one closing row. Status zero denotes
 censoring or administrative end of observation; positive nonterminal codes
-denote recurrent-event types; and `terminal_event` denotes the terminal event.
+denote recurrent-event types; and \code{terminal_event} denotes the terminal event.
 }
 \examples{
 dat <- wa_irt_data()

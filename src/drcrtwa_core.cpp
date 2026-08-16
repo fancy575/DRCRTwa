@@ -7,7 +7,7 @@
 // arbitrary number of recurrent event types and prespecified event weights.
 
 #include <Rcpp.h>
-#include "wa_engine.hpp"
+#include "wa_engine.h"
 
 using namespace Rcpp;
 using namespace drcrtwa;
@@ -329,6 +329,24 @@ DataFrame diagnostic_table(const CoxFit fitC[2],
 
 }  // anonymous namespace
 
+//' Internal compiled fitting interface
+//'
+//' Low-level Rcpp entry point used by [DRCRT_WA()]. This function is an
+//' implementation detail and is not part of the supported user interface.
+//'
+//' @param arm,unit,cluster_size Integer subject-level design vectors.
+//' @param X_censoring,X_terminal,X_recurrent Numeric nuisance-model matrices.
+//' @param final_time,final_status Subject-level closing times and status codes.
+//' @param recurrent_times Recurrent-event histories by event type and subject.
+//' @param recurrent_codes,event_weights Recurrent-event codes and weights.
+//' @param terminal_code Integer terminal-event code.
+//' @param horizons,n_grid Analysis horizons and integration-grid sizes.
+//' @param prob0,prob1 Subject-level randomization probabilities.
+//' @param target_weights,estimand_names Target-population weights and labels.
+//' @param keep_influence,keep_nuisance Logical storage controls.
+//'
+//' @return An internal list of compiled estimates and nuisance-model results.
+//' @keywords internal
 // [[Rcpp::export]]
 List drcrtwa_fit_cpp(
     IntegerVector arm,

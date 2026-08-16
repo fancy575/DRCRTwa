@@ -26,7 +26,7 @@ unit of follow-up time.}
 \item{keep_nuisance}{Logical; retain nuisance fits at the largest fitted time.}
 
 \item{retain_data}{Logical; retain processed subject histories and design
-matrices so that `summary()` can evaluate additional times.}
+matrices so that \code{summary()} can evaluate additional times.}
 }
 \value{
 A list of control settings.

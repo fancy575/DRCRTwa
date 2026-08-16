@@ -7,12 +7,12 @@
 wa_crt_data()
 }
 \value{
-A data frame with columns `cluster`, `id`, `treatment`, `time`,
-  `status`, `z1`, `z2`, and `z3`.
+A data frame with columns \code{cluster}, \code{id}, \code{treatment}, \code{time},
+\code{status}, \code{z1}, \code{z2}, and \code{z3}.
 }
 \description{
 Returns a reproducible cluster-randomized example. Participant identifiers
-intentionally repeat across clusters, so `cluster` and `id` jointly identify
+intentionally repeat across clusters, so \code{cluster} and \code{id} jointly identify
 a participant. Status 0 denotes censoring or administrative closure, status 1
 and 2 denote recurrent-event types, and status 3 denotes death.
 }

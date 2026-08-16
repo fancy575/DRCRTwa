@@ -423,7 +423,7 @@
     max_followup = max_followup,
     control = control,
     n_long_rows = nrow(data),
-    event_counts = setNames(
+    event_counts = stats::setNames(
       vapply(recurrent_codes, function(code) sum(status == code), integer(1L)),
       as.character(recurrent_codes)
     ),

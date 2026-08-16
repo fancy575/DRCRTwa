@@ -13,21 +13,21 @@ wa_trajectory(
 )
 }
 \arguments{
-\item{object}{A fitted `DRCRTwa` object.}
+\item{object}{A fitted \code{DRCRTwa} object.}
 
 \item{times}{Optional analysis times. New times are evaluated from the
 retained subject histories when necessary.}
 
-\item{type}{`"arms"` for treatment-specific while-alive rates or
-`"contrast"` for the treatment-minus-control contrast.}
+\item{type}{\code{"arms"} for treatment-specific while-alive rates or
+\code{"contrast"} for the treatment-minus-control contrast.}
 
 \item{estimand}{Optional estimand names.}
 
-\item{method}{One or more of `"dr"`, `"ipcw"`, and `"or"`.}
+\item{method}{One or more of \code{"dr"}, \code{"ipcw"}, and \code{"or"}.}
 }
 \value{
 A data frame containing estimates, standard errors, and pointwise
-  confidence intervals.
+confidence intervals.
 }
 \description{
 Extract a while-alive trajectory
