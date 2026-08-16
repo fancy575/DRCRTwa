@@ -1,0 +1,35 @@
+Package: DRCRTwa
+Type: Package
+Title: Doubly Robust While-Alive Estimation for Randomized Trials
+Version: 0.1.0
+Authors@R: c(
+    person("Xi", "Fang", email = "xfang@mcw.edu", role = c("aut", "cre")),
+    person("Fan", "Li", email = "fan.f.li@yale.edu", role = "aut")
+  )
+Description: Estimates exposure-weighted while-alive recurrent-event rates in
+    individually randomized and cluster-randomized trials with a terminal event
+    and covariate-dependent censoring. The compiled implementation fits
+    arm-specific Cox working models for censoring and terminal events and
+    Lin-Wei-Yang-Ying marginal proportional-rate working models for recurrent
+    event types. It combines inverse probability of censoring weighting,
+    outcome-regression augmentation, censoring-martingale correction, and
+    independent-unit influence-function inference. Multiple recurrent-event
+    types can be combined through prespecified nonnegative clinical weights,
+    and cluster-randomized analyses can report individual-average and
+    cluster-average estimands.
+License: GPL (>= 3)
+Encoding: UTF-8
+Depends: R (>= 4.1.0)
+Imports:
+    ggplot2 (>= 3.4.0),
+    Rcpp (>= 1.0.10),
+    stats,
+    survival,
+    utils
+LinkingTo: Rcpp
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+NeedsCompilation: yes
+SystemRequirements: C++11
+Config/roxygen2/version: 8.0.0

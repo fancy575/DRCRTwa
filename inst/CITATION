@@ -1,0 +1,15 @@
+bibentry(
+  bibtype = "Unpublished",
+  title = "Doubly robust estimation of while-alive estimands in individually-randomized and cluster-randomized trials",
+  author = c(
+    person("Xi", "Fang"),
+    person("Da", "Zhao"),
+    person("Fan", "Li")
+  ),
+  year = "2026",
+  note = "Manuscript accompanying the DRCRTwa methodology and software",
+  textVersion = paste(
+    "Fang X, Zhao D, and Li F. (2026).",
+    "Doubly robust estimation of while-alive estimands in individually-randomized and cluster-randomized trials."
+  )
+)
